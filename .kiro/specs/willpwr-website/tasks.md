@@ -1,5 +1,42 @@
 # Implementation Plan: willpwr-website
 
+## Resume here (2026-05-09)
+
+**Build is green:** typecheck clean, 39/39 vitest passing, `npm run build` produces 17 static pages + Pagefind index. Last commits: `d6fd9fe` (scaffold + reconciled tasks), `c2db9bc` (playwright version fix).
+
+### Decision needed before more work on Task 1
+Spec mandates `output: 'export'` (pure SSG) but `app/api/contact/route.ts` is incompatible — static export doesn't support Route Handlers. Pick one:
+1. **Keep API route, drop `output: 'export'`** (current state). Update spec to reflect Vercel hybrid SSG + serverless function.
+2. **Keep static export, move contact to a Vercel Function or external form service.** Move `app/api/contact/route.ts` out of the app router.
+
+Once decided, close out Task 1.
+
+### Open required tasks
+- **13.2** — audit every page's `generateMetadata` for title (10–60), description (50–160), unique titles, canonical, OG.
+- **13.3** — audit every page for exactly one `<h1>` and no heading-level skips.
+
+### Open optional `*` tests (none block MVP, but listed for completeness)
+- **3.5 / 3.6** — fast-check property tests for footer + nav links on every page (Properties 8, 9). Existing unit tests check one page each.
+- **4.3** — unit tests for CookieBanner + PostHogProvider (consent options render; opt-out on withdrawal).
+- **4.4 / 4.5 / 4.6 / 4.7** — property tests for Properties 14, 15, 16, 17 (analytics absent without consent; expiry window; signup CTA conversion event; UTM passthrough).
+- **9.8** — property test Property 7 (every help article has a Contact Support link).
+- **11.4 / 11.6** — Property 18 fast-check at the form-component level; ContactForm unit tests for Resend failure + reset on success.
+- **13.4** — Property 10 fast-check for title/description bounds (current test is example-based).
+- **13.6** — Property 12 fast-check for single h1 + no heading skips.
+- **18.1** — Playwright + Lighthouse CI: homepage LCP ≤ 2.5s mobile.
+
+### Checkpoint gates (still open)
+- **5, 12, 17, 19** — re-verify tests at each milestone before closing.
+
+### Quick start when resuming
+```bash
+cd ~/Development/bitterdeveloper/willpwr/getwillpwr
+npm run typecheck && npm run test && npm run build   # confirm still green
+git log --oneline -5                                  # confirm c2db9bc is HEAD
+```
+
+---
+
 ## Overview
 
 Build the getwillpwr.com marketing and product website as a statically generated Next.js App Router application deployed to Vercel. The implementation proceeds in layers: project scaffolding and shared infrastructure first, then page-by-page feature work, then analytics/consent integration, then the contact API, and finally search, testing, and build tooling.
