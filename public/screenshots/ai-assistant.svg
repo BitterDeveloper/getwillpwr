@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="AI assistant placeholder">
+  <rect width="1600" height="1000" fill="#15151b"/>
+  <rect x="40" y="40" width="900" height="920" fill="#1f1f29" rx="12"/>
+  <rect x="980" y="40" width="580" height="920" fill="#1f1f29" rx="12"/>
+  <rect x="1020" y="100" width="500" height="80" fill="#7c5cff" opacity="0.2" rx="8"/>
+  <rect x="1020" y="220" width="500" height="80" fill="#2a2a33" rx="8"/>
+  <rect x="1020" y="340" width="500" height="80" fill="#2a2a33" rx="8"/>
+  <text x="490" y="510" text-anchor="middle" fill="#a1a1aa" font-family="system-ui" font-size="42">AI assistant preview</text>
+</svg>

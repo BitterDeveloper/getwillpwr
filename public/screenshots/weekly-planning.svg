@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="Weekly planning placeholder">
+  <rect width="1600" height="1000" fill="#15151b"/>
+  <rect x="40" y="40" width="1520" height="120" fill="#1f1f29" rx="12"/>
+  <g>
+    <rect x="40" y="200" width="200" height="760" fill="#1f1f29" rx="12"/>
+    <rect x="260" y="200" width="200" height="760" fill="#1f1f29" rx="12"/>
+    <rect x="480" y="200" width="200" height="760" fill="#1f1f29" rx="12"/>
+    <rect x="700" y="200" width="200" height="760" fill="#1f1f29" rx="12"/>
+    <rect x="920" y="200" width="200" height="760" fill="#1f1f29" rx="12"/>
+    <rect x="1140" y="200" width="200" height="760" fill="#1f1f29" rx="12"/>
+    <rect x="1360" y="200" width="200" height="760" fill="#1f1f29" rx="12"/>
+  </g>
+  <text x="800" y="500" text-anchor="middle" fill="#a1a1aa" font-family="system-ui" font-size="42">Weekly planning preview</text>
+</svg>
