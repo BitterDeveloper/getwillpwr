@@ -24,7 +24,7 @@ export function PricingFaq() {
         Sales inquiries?{' '}
         <a
           href={`mailto:${SALES_EMAIL}`}
-          className="font-medium text-accent hover:text-accent-hover"
+          className="font-medium text-accent-fg underline underline-offset-2 hover:text-accent-hover"
         >
           {SALES_EMAIL}
         </a>

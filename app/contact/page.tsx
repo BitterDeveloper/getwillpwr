@@ -21,7 +21,7 @@ export default function ContactPage() {
           Hit us up about anything — bugs, billing, or feature ideas. Or email{' '}
           <a
             href={`mailto:${SUPPORT_EMAIL}`}
-            className="text-accent hover:text-accent-hover"
+            className="text-accent-fg underline underline-offset-2 hover:text-accent-hover"
           >
             {SUPPORT_EMAIL}
           </a>{' '}
