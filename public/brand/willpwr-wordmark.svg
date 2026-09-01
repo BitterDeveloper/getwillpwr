@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 160" role="img" aria-label="Willpwr wordmark">
+  <title>Willpwr horizontal wordmark</title>
+  <desc>Bold geometric sans-serif wordmark with violet primary and lime accent dot</desc>
+  <g fill="none" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke="#5B2FFF">
+      <path d="M60 34 L90 118 L115 64 L140 118 L170 34"/>
+      <path d="M187 58 L187 118"/>
+      <path d="M215 34 L215 118"/>
+      <path d="M243 34 L243 118"/>
+    </g>
+    <g stroke="#0A0A12">
+      <path d="M300 58 L300 146"/>
+      <path d="M300 58 A34 22 0 0 1 300 102"/>
+      <path d="M360 58 L378 118 L395 80 L412 118 L430 58"/>
+      <path d="M455 58 L455 118"/>
+      <path d="M455 68 C455 58 470 58 480 62"/>
+    </g>
+  </g>
+  <rect x="180" y="32" width="14" height="14" fill="#D4FF1F"/>
+</svg>

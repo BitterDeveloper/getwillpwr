@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Willpwr badge">
+  <title>Willpwr badge logo</title>
+  <desc>Circular badge with bold W monogram and lime accent</desc>
+  <circle cx="120" cy="120" r="110" fill="#F8F7F2"/>
+  <circle cx="120" cy="120" r="100" fill="none" stroke="#5B2FFF" stroke-width="14"/>
+  <path d="M55 53 L85 155 L120 95 L155 155 L185 53" fill="none" stroke="#5B2FFF" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="184" y="56" width="14" height="14" fill="#D4FF1F"/>
+</svg>

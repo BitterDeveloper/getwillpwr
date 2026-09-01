@@ -9,7 +9,7 @@ export const baseMetadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/og-default.svg',
+        url: '/og-default.png',
         width: 1200,
         height: 630,
         alt: 'Willpwr — AI-powered productivity for deep work.',
@@ -35,7 +35,7 @@ export function buildMetadata({
   ogImage,
 }: PageMetadataInput): Metadata {
   const canonical = new URL(path, SITE_URL).toString()
-  const image = ogImage ?? '/og-default.svg'
+  const image = ogImage ?? '/og-default.png'
   const absoluteImage = image.startsWith('http')
     ? image
     : new URL(image, SITE_URL).toString()
