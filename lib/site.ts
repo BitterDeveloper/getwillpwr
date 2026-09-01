@@ -5,6 +5,7 @@ export const SITE_NAME = 'Willpwr'
 
 export const SUPPORT_EMAIL = 'support@getwillpwr.com'
 export const SALES_EMAIL = 'sales@getwillpwr.com'
+export const NOREPLY_EMAIL = 'noreply@getwillpwr.com'
 
 export const SIGNUP_URL = 'https://willpwr.app/signup'
 
