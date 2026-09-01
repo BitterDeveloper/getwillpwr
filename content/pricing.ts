@@ -1,11 +1,25 @@
 import type { PricingTier, PricingFaqEntry } from '@/types'
+import {
+  computeAnnualSavings,
+  formatCents,
+  formatMonthsFree,
+  formatSavingsPercent,
+} from '@/lib/pricing'
+
+const PRO_PRICE_CENTS = 997
+const PRO_ANNUAL_PRICE_CENTS = 7997
+const proAmount = { price: PRO_PRICE_CENTS, annualPrice: PRO_ANNUAL_PRICE_CENTS }
+const proAnnualMonthsFree = formatMonthsFree(proAmount)
+const proAnnualSavingsPercent = formatSavingsPercent(proAmount)
+const proAnnualSavings = computeAnnualSavings(proAmount).savings
 
 export const pricingTiers: PricingTier[] = [
   {
     id: 'free',
     name: 'Free',
-    monthlyPrice: 0,
+    price: 0,
     annualPrice: null,
+    billingType: 'free',
     features: [
       'Dashboard overview',
       'Basic task management',
@@ -23,8 +37,9 @@ export const pricingTiers: PricingTier[] = [
   {
     id: 'pro-monthly',
     name: 'Pro Monthly',
-    monthlyPrice: 997,
+    price: PRO_PRICE_CENTS,
     annualPrice: null,
+    billingType: 'recurring',
     features: [
       '350 AI assistant messages/month',
       'All productivity modules',
@@ -46,19 +61,13 @@ export const pricingTiers: PricingTier[] = [
   {
     id: 'pro-annual',
     name: 'Pro Annual',
-    monthlyPrice: 997,
-    annualPrice: 7997,
+    price: PRO_PRICE_CENTS,
+    annualPrice: PRO_ANNUAL_PRICE_CENTS,
+    billingType: 'recurring',
     features: [
       'Everything in Pro Monthly',
-      '3 months free vs monthly billing',
+      `${proAnnualMonthsFree} vs monthly billing`,
       'Priority email support',
-      '250 AI assistant messages/month',
-      'Email/Image — Gmail & Outlook',
-      'Full dashboard customization',
-      'SMS, Discord & email notifications',
-      'Advanced analytics',
-      '90-day planning with AI coaching',
-      'Email support',
     ],
     ctaLabel: 'Start Pro Annual',
     ctaHref: 'https://willpwr.app/signup?plan=pro-annual',
@@ -71,8 +80,9 @@ export const pricingTiers: PricingTier[] = [
   {
     id: 'lifetime',
     name: 'Lifetime',
-    monthlyPrice: 9700,
+    price: 9700,
     annualPrice: null,
+    billingType: 'one-time',
     features: [
       '500 AI assistant messages/month',
       'All productivity modules',
@@ -112,7 +122,7 @@ export const pricingFaq: PricingFaqEntry[] = [
   {
     question: "What's the difference between monthly and annual Pro?",
     answer:
-      "Annual Pro is billed at $79.97/yr — a 33% discount, roughly $40 savings vs paying $9.97/mo. That's two months free.",
+      `Annual Pro is billed at ${formatCents(PRO_ANNUAL_PRICE_CENTS)}/yr — a ${proAnnualSavingsPercent} discount, roughly ${formatCents(proAnnualSavings)} savings vs paying ${formatCents(PRO_PRICE_CENTS)}/mo. That's ${proAnnualMonthsFree}.`,
   },
   {
     question: 'Is the Lifetime deal really one-time?',

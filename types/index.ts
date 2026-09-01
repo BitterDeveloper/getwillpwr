@@ -1,8 +1,12 @@
+export type PricingBillingType = 'free' | 'recurring' | 'one-time'
+
 export interface PricingTier {
   id: string
   name: string
-  monthlyPrice: number
+  /** Headline price in cents: the monthly rate for `recurring`/`free` tiers, the total for `one-time` tiers. */
+  price: number
   annualPrice: number | null
+  billingType: PricingBillingType
   features: string[]
   ctaLabel: string
   ctaHref: string

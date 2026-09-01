@@ -2,11 +2,23 @@ import type { Metadata } from 'next'
 import { PricingGrid } from '@/components/pricing/PricingGrid'
 import { PricingFaq } from '@/components/pricing/PricingFaq'
 import { buildMetadata } from '@/lib/metadata'
+import { pricingTiers } from '@/content/pricing'
+import { formatCents, formatSavingsPercent } from '@/lib/pricing'
+
+function buildPricingDescription(): string {
+  const monthly = pricingTiers.find((tier) => tier.id === 'pro-monthly')
+  const annual = pricingTiers.find((tier) => tier.annualPrice !== null)
+  const lifetime = pricingTiers.find((tier) => tier.billingType === 'one-time')
+  if (!monthly || !annual || !annual.annualPrice || !lifetime) {
+    throw new Error('Pricing metadata description requires monthly, annual, and lifetime tiers')
+  }
+  const savingsPercent = formatSavingsPercent(annual)
+  return `Free, Pro Monthly at ${formatCents(monthly.price)}/mo, Pro Annual at ${formatCents(annual.annualPrice)}/yr (save ${savingsPercent}), or Lifetime at ${formatCents(lifetime.price)}. Pick the plan that fits how you work.`
+}
 
 export const metadata: Metadata = buildMetadata({
   title: 'Pricing — Willpwr',
-  description:
-    'Free, Pro Monthly at $9.97/mo, Pro Annual at $79.97/yr (save 33%), or Lifetime at $97. Pick the plan that fits how you work.',
+  description: buildPricingDescription(),
   path: '/pricing',
 })
 

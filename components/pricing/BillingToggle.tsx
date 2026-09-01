@@ -1,11 +1,17 @@
 'use client'
 
+import { pricingTiers } from '@/content/pricing'
+import { formatSavingsPercent } from '@/lib/pricing'
+
 export type BillingCycle = 'monthly' | 'annual'
 
 interface Props {
   value: BillingCycle
   onChange: (value: BillingCycle) => void
 }
+
+const annualTier = pricingTiers.find((tier) => tier.annualPrice !== null)
+const savingsPercentLabel = annualTier ? formatSavingsPercent(annualTier) : null
 
 export function BillingToggle({ value, onChange }: Props) {
   return (
@@ -28,9 +34,9 @@ export function BillingToggle({ value, onChange }: Props) {
           }`}
         >
           {option === 'monthly' ? 'Monthly' : 'Annual'}
-          {option === 'annual' && (
+          {option === 'annual' && savingsPercentLabel && (
             <span className="ml-2 rounded bg-success/20 px-1.5 py-0.5 text-[10px] font-semibold uppercase text-success">
-              Save 33%
+              Save {savingsPercentLabel}
             </span>
           )}
         </button>
