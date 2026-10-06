@@ -11,7 +11,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "icons": "tsx scripts/generate-icons.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "3.9.1",
@@ -44,6 +45,7 @@
     "jsdom": "25.0.1",
     "pagefind": "1.2.0",
     "postcss": "8.4.49",
+    "sharp": "0.33.5",
     "tailwindcss": "4.0.0-beta.8",
     "tsx": "4.19.2",
     "typescript": "5.7.2",

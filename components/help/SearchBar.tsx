@@ -88,7 +88,10 @@ export function SearchBar() {
       {results && results.length === 0 && (
         <p className="mt-3 text-sm text-fg-muted">
           No results found for "{query}".{' '}
-          <Link href="/contact" className="text-accent hover:text-accent-hover">
+          <Link
+            href="/contact"
+            className="text-accent-fg underline underline-offset-2 hover:text-accent-hover"
+          >
             Contact support
           </Link>
           .
