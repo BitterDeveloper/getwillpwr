@@ -11,13 +11,15 @@ interface Props {
 }
 
 export function PricingCard({ tier, billingCycle }: Props) {
-  const isLifetime = tier.id === 'lifetime'
+  const isOneTime = tier.billingType === 'one-time'
   const isAnnualView =
-    billingCycle === 'annual' && tier.annualPrice !== null && !isLifetime
+    billingCycle === 'annual' && tier.annualPrice !== null && !isOneTime
+  const isMonthlyOnlyInAnnualView =
+    billingCycle === 'annual' && tier.billingType === 'recurring' && tier.annualPrice === null
 
   const priceDisplay = (() => {
-    if (tier.isFree) return { primary: '$0', suffix: 'forever' }
-    if (isLifetime) return { primary: formatCents(tier.monthlyPrice), suffix: 'one-time' }
+    if (tier.isFree) return { primary: formatCents(0), suffix: 'forever' }
+    if (isOneTime) return { primary: formatCents(tier.price), suffix: 'one-time' }
     if (isAnnualView) {
       const { perMonth } = computeAnnualSavings(tier)
       return {
@@ -25,7 +27,10 @@ export function PricingCard({ tier, billingCycle }: Props) {
         suffix: '/mo, billed annually',
       }
     }
-    return { primary: formatCents(tier.monthlyPrice), suffix: '/month' }
+    if (isMonthlyOnlyInAnnualView) {
+      return { primary: formatCents(tier.price), suffix: '/month, billed monthly' }
+    }
+    return { primary: formatCents(tier.price), suffix: '/month' }
   })()
 
   const savings =
