@@ -1,11 +1,20 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { contactSchema } from '@/lib/contact-schema'
+import { NOREPLY_EMAIL, SUPPORT_EMAIL } from '@/lib/site'
 
 export const runtime = 'nodejs'
 
 const RATE_LIMIT_WINDOW_MS = 60_000
 const RATE_LIMIT_MAX = 5
+
+// Deliberately in-memory and deliberately weak. `ipHits` lives in one serverless
+// instance, and Vercel scales out and cold-starts freely, so the real guarantee is
+// 5 requests per minute *per running instance*, not per site. It blunts a naive
+// flood from a single client; it does not stop a determined one. The honeypot
+// (`_hp` in contactSchema) is the actual spam gate. Making this a site-wide limit
+// means adding a shared datastore (Upstash/KV), which is a hosting decision nobody
+// has made yet -- do not add one without asking.
 const ipHits = new Map<string, { count: number; resetAt: number }>()
 
 function rateLimit(ip: string): boolean {
@@ -60,8 +69,8 @@ export async function POST(request: Request) {
   }
 
   const resend = new Resend(apiKey)
-  const to = process.env.CONTACT_TO_EMAIL ?? 'support@getwillpwr.com'
-  const from = process.env.CONTACT_FROM_EMAIL ?? 'noreply@getwillpwr.com'
+  const to = process.env.CONTACT_TO_EMAIL ?? SUPPORT_EMAIL
+  const from = process.env.CONTACT_FROM_EMAIL ?? NOREPLY_EMAIL
 
   try {
     const { error } = await resend.emails.send({
